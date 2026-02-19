@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 280px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+    }
+    h2 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    p {
+      margin: 0 0 16px 0;
+      color: #555;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    button {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      background: #1a73e8;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1557b0;
+    }
+    button:active {
+      background: #134a9a;
+    }
+    .message {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #0f9d58;
+      display: none;
+    }
+    .message.error {
+      color: #d93025;
+    }
+    .message.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h2>Save All Tabs</h2>
+  <p>Download a text file with the URL of every open tab.</p>
+  <button id="save">Save tabs to file</button>
+  <div id="message" class="message"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
