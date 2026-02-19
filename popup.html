@@ -37,6 +37,23 @@
     button:active {
       background: #134a9a;
     }
+    button.secondary {
+      background: #fff;
+      color: #1a73e8;
+      border: 1px solid #dadce0;
+    }
+    button.secondary:hover {
+      background: #f8f9fa;
+    }
+    button.secondary:active {
+      background: #e8eaed;
+    }
+    #import {
+      margin-top: 8px;
+    }
+    input[type="file"] {
+      display: none;
+    }
     .message {
       margin-top: 12px;
       font-size: 13px;
@@ -53,8 +70,10 @@
 </head>
 <body>
   <h2>Save All Tabs</h2>
-  <p>Download a text file with the URL of every open tab.</p>
+  <p>Export or import your tabs via a text file (title and URL per line).</p>
   <button id="save">Save tabs to file</button>
+  <button id="import" class="secondary">Import tabs from file</button>
+  <input type="file" id="file" accept=".txt,text/plain" />
   <div id="message" class="message"></div>
   <script src="popup.js"></script>
 </body>
