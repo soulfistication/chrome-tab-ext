@@ -5,17 +5,20 @@ document.getElementById('save').addEventListener('click', async () => {
 
   try {
     const tabs = await chrome.tabs.query({});
-    const urls = tabs
+    const lines = tabs
       .filter(tab => tab.url && !tab.url.startsWith('chrome://'))
-      .map(tab => tab.url);
+      .map(tab => {
+        const title = (tab.title || '').trim() || '(no title)';
+        return `${title} - ${tab.url}`;
+      });
 
-    if (urls.length === 0) {
+    if (lines.length === 0) {
       messageEl.textContent = 'No tabs to save.';
       messageEl.classList.add('visible', 'error');
       return;
     }
 
-    const content = urls.join('\n');
+    const content = lines.join('\n');
     const filename = 'tabs-' + new Date().toISOString().slice(0, 19).replace(/[:-]/g, '') + '.txt';
 
     await chrome.downloads.download({
@@ -24,7 +27,7 @@ document.getElementById('save').addEventListener('click', async () => {
       saveAs: true
     });
 
-    messageEl.textContent = `Saved ${urls.length} tab${urls.length === 1 ? '' : 's'}.`;
+    messageEl.textContent = `Saved ${lines.length} tab${lines.length === 1 ? '' : 's'}.`;
     messageEl.classList.add('visible');
   } catch (err) {
     messageEl.textContent = 'Error: ' + (err.message || 'Could not save tabs.');
